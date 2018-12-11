@@ -16,10 +16,10 @@ namespace Capsule_TaskManagerDL.Model
     using System.Data.Objects.DataClasses;
     using System.Linq;
     
-    public partial class TaskManagerEntities : DbContext
+    public partial class Entities : DbContext
     {
-        public TaskManagerEntities()
-            : base("name=TaskManagerEntities")
+        public Entities()
+            : base("name=Entities")
         {
         }
     

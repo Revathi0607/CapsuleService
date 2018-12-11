@@ -2,9 +2,11 @@
 using Capsule_TaskManagerDL.Model;
 using System.Collections.Generic;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Capsule_TaskManager.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class TaskManagerController : ApiController
     {
         #region Public Declaration
@@ -14,6 +16,10 @@ namespace Capsule_TaskManager.Controllers
         #endregion
 
         #region GetParentTask
+        /// <summary>
+        /// To get Parent task details
+        /// </summary>
+        /// <returns></returns>
         [Route("api/TaskManager/GetParentTask")]
         [HttpGet]       
         public IEnumerable<GET_PARENT_TASK_Result> GetParentTask()
@@ -26,8 +32,11 @@ namespace Capsule_TaskManager.Controllers
         #endregion
 
         #region GetTaskDetails
+        /// <summary>
+        /// Method for getting the task details from BL and send back to HTML
+        /// </summary>
+        /// <returns></returns>
         [Route("api/TaskManager/GetTaskDetails")]
-        
         [HttpGet]       
         public IEnumerable<GET_TASK_DETAILS_Result> GetTaskDetails()
         {
@@ -39,6 +48,11 @@ namespace Capsule_TaskManager.Controllers
         #endregion
 
         #region InsertTaskDetails
+        /// <summary>
+        /// Insert the Task details which user entered
+        /// </summary>
+        /// <param name="objGET_TASK_DETAILS_Result"></param>
+        /// <returns></returns>
         [Route("api/TaskManager/InsertTaskDetails")]
         [HttpPost]
         public string InsertTaskDetails(GET_TASK_DETAILS_Result objGET_TASK_DETAILS_Result)
@@ -50,6 +64,11 @@ namespace Capsule_TaskManager.Controllers
         #endregion
 
         #region UpdateEndTask
+        /// <summary>
+        /// Update the End task 
+        /// </summary>
+        /// <param name="objGET_TASK_DETAILS_Result"></param>
+        /// <returns></returns>
         [Route("api/TaskManager/UpdateEndTask")]
         [HttpPost]
         public string UpdateEndTask(GET_TASK_DETAILS_Result objGET_TASK_DETAILS_Result)

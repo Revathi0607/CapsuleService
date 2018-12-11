@@ -72,32 +72,30 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="Model\TaskManagerEntity.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>TaskManagerEntity.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
     <None Include="Model\TaskManagerEntity.edmx.diagram">
       <DependentUpon>TaskManagerEntity.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Model\TaskManagerEntity.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>TaskManagerEntity.Context.cs</LastGenOutput>
       <DependentUpon>TaskManagerEntity.edmx</DependentUpon>
+      <LastGenOutput>TaskManagerEntity.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Model\TaskManagerEntity.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TaskManagerEntity.edmx</DependentUpon>
       <LastGenOutput>TaskManagerEntity.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

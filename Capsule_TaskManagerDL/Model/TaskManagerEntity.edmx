@@ -4,7 +4,24 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="TaskManagerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="TaskManagerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'TaskManager.dbo.Parent_Task' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Parent_Task">
+          <Property Name="Parent_ID" Type="int" />
+          <Property Name="Parent_Task" Type="varchar" MaxLength="500" />
+        </EntityType>-->
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'TaskManager.dbo.Task' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Task">
+          <Property Name="Task_ID" Type="int" />
+          <Property Name="Parent_ID" Type="int" />
+          <Property Name="Task" Type="varchar" MaxLength="500" />
+          <Property Name="Start_Date" Type="datetime" />
+          <Property Name="End_Date" Type="datetime" />
+          <Property Name="Priority" Type="int" />
+          <Property Name="IsActive" Type="int" />
+        </EntityType>-->
         <Function Name="GET_PARENT_TASK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GET_TASK_DETAILS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="INSERT_TASK_DETAILS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -20,11 +37,12 @@
           <Parameter Name="End_Date" Type="datetime" Mode="In" />
         </Function>
         <EntityContainer Name="TaskManagerModelStoreContainer" />
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TaskManagerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="TaskManagerEntities" annotation:LazyLoadingEnabled="true" >
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true" >
           <FunctionImport Name="GET_PARENT_TASK" ReturnType="Collection(TaskManagerModel.GET_PARENT_TASK_Result)" />
           <FunctionImport Name="GET_TASK_DETAILS" ReturnType="Collection(TaskManagerModel.GET_TASK_DETAILS_Result)" />
           <FunctionImport Name="INSERT_TASK_DETAILS">
@@ -58,7 +76,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="TaskManagerModelStoreContainer" CdmEntityContainer="TaskManagerEntities" >
+        <EntityContainerMapping StorageEntityContainer="TaskManagerModelStoreContainer" CdmEntityContainer="Entities" >
           <FunctionImportMapping FunctionImportName="GET_PARENT_TASK" FunctionName="TaskManagerModel.Store.GET_PARENT_TASK">
             <ResultMapping>
               <ComplexTypeMapping TypeName="TaskManagerModel.GET_PARENT_TASK_Result">
